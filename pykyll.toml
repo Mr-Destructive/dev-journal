@@ -1,0 +1,17 @@
+[pages]
+site_name = "Dev Journal"
+pages_path = "pages/dev-journal"
+
+[outputs]
+pytes_path = "pytes/"
+
+[author]
+name = "Meet"
+email = "gormeet711@gmail.com"
+twitter_id = "meetgor21"
+github_username = "mr-destructive"
+blog_link = "meetgor.com"
+
+[templates]
+post_template = "templates/post.html"
+feed_template = "templates/feed.html"

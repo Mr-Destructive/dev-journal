@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>{{ title }}</title>
     </head>
     <body>
         <h2>{{ title }}</h2>
         <h4>{{ description }}</h4>
-        <p>Author: <a href="https://meetgor.com/">Meet</a></p>
+        <p>Author: <a href="{{ user_blog }}">{{ author }}</a></p>
         <article>
             {{ content }}
         </article>
