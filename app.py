@@ -11,6 +11,10 @@ from pathlib import Path
 
 
 def load_config(file: str) -> dict:
+    """
+    Load the config file `pykyll.toml
+    Return the config as a dict
+    """
     config = {}
     with open(file, mode="rb") as f:
         config_file = tomli.load(f)
@@ -24,20 +28,29 @@ def load_config(file: str) -> dict:
     return config
 
 
-def load_feed(site_name: str, feed_template: str, posts: list, output_path: str):
+def load_feed(config: dict, posts: list):
+    """
+    open the feed templates
+    for each post in the list of posts,
+    write parse the variables into the template
+    """
 
-    with open(feed_template) as f:
+    with open(config["feed_template"]) as f:
         template = Template(f.read())
 
     feed_html = template.render(
-        site_name=site_name,
+        site_name=config["site_name"],
         posts=posts,
     )
-    with open(Path(output_path) / "index.html", "w") as f:
+    with open(Path(config["output_path"]) / "index.html", "w") as f:
         f.write(feed_html)
 
 
 def load_pages(config: dict) -> list:
+    """
+    Get all the posts for the given config
+    Return a list of posts
+    """
     post_path = config["post_path"]
     output_path = config["output_path"]
     post_files = os.listdir(post_path)
@@ -64,6 +77,9 @@ def load_pages(config: dict) -> list:
 def render_templates(
     post: frontmatter.Post, title: str, html_content: str, config: dict
 ):
+    """
+    Create a html page given the post, html contene, title with config
+    """
     default_file = str(post.get("title", title)) + ".html"
 
     with open(config["page_template"]) as f:
@@ -80,6 +96,10 @@ def render_templates(
 
 
 def start_server(path: str):
+    """
+    Run the localserver with the path as pyites
+    storing all the static pages for the site.
+    """
     PORT = 8000
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=path)
     with socketserver.TCPServer(("", PORT), handler) as httpd:
@@ -91,12 +111,16 @@ def start_server(path: str):
 
 
 def main():
+    """
+    load configuration
+    load and parse posts from the config path
+    create the feedpage
+    create individual pages for posts
+    start the server
+    """
     config = load_config("pykyll.toml")
     posts = load_pages(config)
-    load_feed(
-        config["site_name"], config["feed_template"], posts, config["output_path"]
-    )
+    load_feed(config, posts)
     start_server(config["output_path"])
-
 
 main()
