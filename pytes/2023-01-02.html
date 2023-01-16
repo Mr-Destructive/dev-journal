@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2023-01-02</title>
+    </head>
+    <body>
+        <h2>2023-01-02</h2>
+        <h4></h4>
+        <p>Author: <a href="meetgor.com">Meet</a></p>
+        <article>
+            <ul>
+<li>Django admin filters and optimization</li>
+<li>Git commit author plugin for neovim</li>
+</ul>
+<p>Dwelled a bit deeper into the filters and optimization for django admin for the dst app. We can write <code>get_queryset</code> for fine tuning the list of the objects renderd onto the list page in admin. Also the <code>autocomplete</code> and <code>raw_id</code> fields are used only for detail view. It doesn't impact the query for the list page.</p>
+<p>Created a working and broken plugin for mimicking gitlens in neovim. Uses the git blame command with some lua parsing and neovim extmark. The plugin is just in test for how it will feel, just playing with the idea.</p>
+        </article>
+    </body>
+</html>

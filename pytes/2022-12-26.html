@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2022-12-26</title>
+    </head>
+    <body>
+        <h2>2022-12-26</h2>
+        <h4></h4>
+        <p>Author: <a href="meetgor.com">Meet</a></p>
+        <article>
+            <p>Worked with data a lot for today, fetched some metrics realted to a deployed app on azure like api calls, db connections, queries and active user count. In that process, worked with azure portal created and learned about queries to be performed on the platform for fetching metrics, newrelic NRQL queries and dashboard first time interaction. Also did a litle sql and django query building for those metrics(db connections).</p>
+<ul>
+<li>Worked with Metrics for some app<ul>
+<li>SQL queries for active connections(postgres db)</li>
+<li>Django and SQL query for current active users in system</li>
+<li>Azure Dashboard for query with metirc analysis</li>
+<li>Newrelic NRQL Queries</li>
+</ul>
+</li>
+<li>Docker TUI with textual (bug for container id and name parsing)</li>
+<li>Blog TUI with textual (base layout with rss feed link)</li>
+</ul>
+<p>TIL</p>
+<ul>
+<li>
+<p><a href="https://docs.newrelic.com/docs/query-your-data/nrql-new-relic-query-language/get-started/introduction-nrql-new-relics-query-language/">NRQL</a>, a SQL like query language for newrelic metrics. It has powerful syntax like fetching and grouping data with time <code>since</code>, <code>ago</code> and smart types like <code>week</code>, <code>days</code>, other functions like <code>rate</code> handy for average calculation(I used for getting average of db hits per week over 5 weeks), <code>uniqueCount</code>, etc.</p>
+</li>
+<li>
+<p>Custom <a href="https://www.cockroachlabs.com/blog/udfs-in-sql/">User Defined Functions in SQL</a> (UDF)</p>
+</li>
+</ul>
+<p>Dug a bit deep and learnt afresh about UDFs in SQL, understood the four components: name, arguments, return and function body. The actual content that can be returned is a sql query string.</p>
+<pre><code class="language-sql">/* create a udf add */
+CREATE FUNCTION add(a INT, b INT) RETURNS INT AS 'SELECT a+b, a-b' LANGUAGE SQL
+
+SELECT * FROM add(2, 3)
+</code></pre>
+<p>It returns a single int as defined in the function signature.</p>
+        </article>
+    </body>
+</html>
